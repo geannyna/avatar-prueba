@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Avatar react</title>
+  <style>
+    img{
+      box-shadow: 0 0 20px black;
+      border-radius: 50%;
+    }
+    button {
+      margin-top: 70px;
+      margin-left: 50px;
+      width: 10em;
+      position: relative;
+      height: 3.5em;
+      border: 3px dashed #149CEA;
+      outline: none;
+      background-color: transparent;
+      color: rgb(133, 179, 252);
+      transition: 1s;
+      border-radius: 0.3em;
+      font-size: 16px;
+      font-weight: bold;
+    }
+    
+    button::after {
+      content: "";
+      position: absolute;
+      top: -10px;
+      left: 3%;
+      width: 95%;
+      height: 40%;
+      background-color: #212121;
+      transition: 1.5s;
+      transform-origin: center;
+    }
+    
+    button::before {
+      content: "";
+      transform-origin: center;
+      position: absolute;
+      top: 80%;
+      left: 3%;
+      width: 95%;
+      height: 40%;
+      background-color: #212121;
+      transition: 1.5s;
+    }
+    
+    button:hover::before, button:hover::after {
+      transform: scale(0);
+      transition: 1.5s;
+    }
+    
+    button:hover {
+      box-shadow: inset 0px 0px 25px #1479EA;
+      transition: 1.5s;
+    }
+  </style>
+
+ 
+</head>
+<body>
+  <h1>Women in tech</h1>
+  <div id="app"></div>
+  <div>
+  <button> Nueva prueba</button></div>
+  <script type="text/babel">
+    const $app = document.getElementById("app");
+    const useState = React.useState;
+
+
+    const Avatar = props => {
+      const [enabled, setEnabled] = useState(true);
+      
+      const src=`https://randomuser.me/api/portraits/women/${props.id}.jpg`;
+      const className = enabled ? "" : "disabled"
+      
+      return (
+        <picture>
+          <img onClick={() => setEnabled(!enabled)}
+           className={className} 
+           src={src} />
+          <strong>{props.name}</strong>
+        </picture>
+       );
+    };
+
+    ReactDOM.render( 
+      <div>
+        <Avatar id = {17} name="Angelica" />
+        <Avatar id = {12} name="Ramona" />
+    </div>, $app );
+  </script>
+
+  <!-- https://randomuser.me/photos -- api de imagenes random
+  <img src="https://randomuser.me/api/portraits/women/3.jpg" alt="">   -->
+  
+    <!-- cdn react -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+     <!-- cdn jsx -->
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script> 
+</body>
+</html>
